@@ -12,7 +12,7 @@ export default function HomePage() {
     <ProtectedRoute>
       <MainLayout>
         <section className="py-12 md:py-20">
-          <div className="container">
+          <div className="container px-6">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{projectConfig.name}</h1>
               <p className="text-xl text-muted-foreground">{projectConfig.description}</p>

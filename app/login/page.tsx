@@ -43,9 +43,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/40 p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
+    <div className="min-h-screen flex items-center justify-center bg-muted/40 px-6 py-8">
+      <Card className="w-full max-w-md mx-auto shadow-lg">
+        <CardHeader className="space-y-3">
           <div className="flex items-center justify-center mb-2">
             <div className="flex items-center gap-2">
               {projectConfig.logo ? (
@@ -62,7 +62,7 @@ export default function LoginPage() {
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-5 px-6">
             {error && <div className="p-3 text-sm bg-destructive/15 text-destructive rounded-md">{error}</div>}
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -76,7 +76,7 @@ export default function LoginPage() {
               </p>
             </div>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="px-6 pb-6">
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? (
                 <>

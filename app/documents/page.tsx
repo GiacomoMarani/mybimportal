@@ -9,7 +9,7 @@ export default function DocumentsPage() {
   return (
     <ProtectedRoute>
       <MainLayout>
-        <div className="container py-8">
+        <div className="container py-8 px-6">
           <h1 className="text-3xl font-bold mb-6">Documenti</h1>
 
           <div className="space-y-4">

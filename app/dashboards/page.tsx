@@ -15,7 +15,7 @@ export default function DashboardsPage() {
   return (
     <ProtectedRoute>
       <MainLayout>
-        <div className="container py-8 px-6">
+        <div className="max-w-7xl mx-auto w-full py-8 px-8 md:px-12">
           <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">

@@ -28,7 +28,7 @@ export function MainLayout({ children, className }: MainLayoutProps) {
   return (
     <div className="flex flex-col min-h-screen">
       <header className="border-b">
-        <div className="container flex h-16 items-center justify-between py-4 px-6">
+        <div className="max-w-7xl mx-auto w-full flex h-16 items-center justify-between py-4 px-8 md:px-12">
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
               {projectConfig.logo ? (
@@ -76,7 +76,7 @@ export function MainLayout({ children, className }: MainLayoutProps) {
       </header>
       <main className={cn("flex-1", className)}>{children}</main>
       <footer className="border-t py-6">
-        <div className="container flex flex-col md:flex-row items-center justify-between gap-4 px-6">
+        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-4 px-8 md:px-12">
           <div className="flex items-center gap-2">
             {projectConfig.logo ? (
               <img src={projectConfig.logo || "/placeholder.svg"} alt={projectConfig.name} className="h-5 w-5" />

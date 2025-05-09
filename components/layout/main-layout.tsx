@@ -26,9 +26,9 @@ export function MainLayout({ children, className }: MainLayoutProps) {
   const { user, logout } = useAuth()
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen w-full">
       <header className="border-b w-full">
-        <div className="container flex h-16 items-center justify-between py-4">
+        <div className="container mx-auto flex h-16 items-center justify-between py-4">
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
               {projectConfig.logo ? (
@@ -75,10 +75,10 @@ export function MainLayout({ children, className }: MainLayoutProps) {
         </div>
       </header>
       <main className={cn("flex-1 w-full", className)}>
-        <div className="container py-8">{children}</div>
+        <div className="container mx-auto py-8">{children}</div>
       </main>
       <footer className="border-t w-full py-6">
-        <div className="container flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             {projectConfig.logo ? (
               <img src={projectConfig.logo || "/placeholder.svg"} alt={projectConfig.name} className="h-5 w-5" />

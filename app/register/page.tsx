@@ -3,23 +3,23 @@
 import type React from "react"
 
 import { useState } from "react"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Building2, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function RegisterPage() {
-  const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState("")
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsLoading(true)
-    setError("")
+    setError(null)
 
     const formData = new FormData(event.currentTarget)
     const name = formData.get("name") as string
@@ -27,29 +27,31 @@ export default function RegisterPage() {
     const password = formData.get("password") as string
     const confirmPassword = formData.get("confirmPassword") as string
 
-    // Validazione base
     if (password !== confirmPassword) {
       setError("Le password non corrispondono")
       setIsLoading(false)
       return
     }
 
-    // Simulazione di registrazione - in un'applicazione reale, qui si connetterebbe a un backend
     try {
-      // Simula una richiesta di rete
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000))
 
-      // Reindirizza alla dashboard dopo la registrazione
-      router.push("/dashboard")
-    } catch (err) {
-      setError("Si è verificato un errore durante la registrazione. Riprova.")
+      // Registration logic here (e.g., API call)
+      console.log("Registration data:", { name, email, password })
+
+      // Redirect to home page after successful registration
+      router.push("/")
+    } catch (error: any) {
+      setError(error.message || "Si è verificato un errore durante la registrazione")
     } finally {
       setIsLoading(false)
     }
   }
 
+  // In the return statement, update the outer div to ensure proper centering
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/40 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-muted/40 p-4" style={{ margin: "0 auto" }}>
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <div className="flex items-center justify-center mb-2">

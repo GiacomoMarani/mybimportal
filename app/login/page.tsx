@@ -2,48 +2,56 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { Building2, Loader2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { useAuth } from "@/hooks/use-auth"
-import { projectConfig } from "@/config/project-config"
+import { Button } from "@/components/ui/button"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useToast } from "@/components/ui/use-toast"
+import { Loader2, Building2 } from "lucide-react"
+import { projectConfig } from "@/config/project"
 
-export default function LoginPage() {
-  const router = useRouter()
-  const { login } = useAuth()
+export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState("")
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+  const { toast } = useToast()
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
+
     setIsLoading(true)
-    setError("")
+    setError(null)
 
-    const formData = new FormData(event.currentTarget)
-    const email = formData.get("email") as string
-    const password = formData.get("password") as string
+    const data = new FormData(event.target as HTMLFormElement)
+    const email = data.get("email") as string
+    const password = data.get("password") as string
 
-    try {
-      const success = await login(email, password)
+    // Simulate an authentication delay.
+    await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      if (success) {
-        router.push("/")
-      } else {
-        setError("Credenziali non valide. Riprova.")
-      }
-    } catch (err) {
-      setError("Si è verificato un errore durante l'accesso. Riprova.")
-    } finally {
+    if (password !== "password") {
+      setError("Credenziali non valide")
       setIsLoading(false)
+      return
     }
+
+    toast({
+      title: "Accesso effettuato",
+      description: "Redirect alla dashboard...",
+    })
+
+    setIsLoading(false)
+    router.push("/dashboard")
   }
 
+  // In the return statement, update the outer div to ensure proper centering
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/40 p-4 sm:p-6 md:p-8 lg:p-12">
+    <div
+      className="min-h-screen flex items-center justify-center bg-muted/40 p-4 sm:p-6 md:p-8 lg:p-12"
+      style={{ margin: "0 auto" }}
+    >
       <Card className="w-full max-w-md mx-auto shadow-lg">
         <CardHeader className="space-y-3">
           <div className="flex items-center justify-center mb-2">

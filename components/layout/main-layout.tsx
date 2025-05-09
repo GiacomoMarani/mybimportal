@@ -3,7 +3,6 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
 import { projectConfig } from "@/config/project-config"
-import { cn } from "@/lib/utils"
 import { Building2, LogOut } from "lucide-react"
 import { useAuth } from "@/hooks/use-auth"
 import { Button } from "@/components/ui/button"
@@ -19,16 +18,68 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 interface MainLayoutProps {
   children: ReactNode
-  className?: string
 }
 
-export function MainLayout({ children, className }: MainLayoutProps) {
+export function MainLayout({ children }: MainLayoutProps) {
   const { user, logout } = useAuth()
 
+  // Stili inline per garantire che vengano applicati
+  const headerStyle = {
+    borderBottom: "1px solid var(--border)",
+    width: "100%",
+  }
+
+  const headerContentStyle = {
+    display: "flex",
+    height: "4rem",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "1rem 2rem",
+    maxWidth: "1200px",
+    margin: "0 auto",
+    width: "100%",
+  }
+
+  const mainStyle = {
+    flex: "1",
+    width: "100%",
+  }
+
+  const mainContentStyle = {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "2rem",
+    width: "100%",
+  }
+
+  const footerStyle = {
+    borderTop: "1px solid var(--border)",
+    width: "100%",
+    padding: "1.5rem 0",
+  }
+
+  const footerContentStyle = {
+    display: "flex",
+    flexDirection: "column" as const,
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "1rem",
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "0 2rem",
+    width: "100%",
+  }
+
+  const wrapperStyle = {
+    display: "flex",
+    flexDirection: "column" as const,
+    minHeight: "100vh",
+  }
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="border-b w-full">
-        <div className="container flex h-16 items-center justify-between py-4">
+    <div style={wrapperStyle}>
+      <header style={headerStyle}>
+        <div style={headerContentStyle}>
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
               {projectConfig.logo ? (
@@ -74,11 +125,11 @@ export function MainLayout({ children, className }: MainLayoutProps) {
           </div>
         </div>
       </header>
-      <main className={cn("flex-1 w-full", className)}>
-        <div className="container py-8">{children}</div>
+      <main style={mainStyle}>
+        <div style={mainContentStyle}>{children}</div>
       </main>
-      <footer className="border-t w-full py-6">
-        <div className="container flex flex-col md:flex-row items-center justify-between gap-4">
+      <footer style={footerStyle}>
+        <div style={footerContentStyle}>
           <div className="flex items-center gap-2">
             {projectConfig.logo ? (
               <img src={projectConfig.logo || "/placeholder.svg"} alt={projectConfig.name} className="h-5 w-5" />

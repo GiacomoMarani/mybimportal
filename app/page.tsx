@@ -11,12 +11,12 @@ export default function HomePage() {
   return (
     <ProtectedRoute>
       <MainLayout>
-        <div className="max-w-3xl mx-auto text-center mb-12">
+        <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center", marginBottom: "3rem" }}>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{projectConfig.name}</h1>
           <p className="text-xl text-muted-foreground">{projectConfig.description}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2rem", marginBottom: "3rem" }}>
           <div>
             <h2 className="text-2xl font-bold mb-4">Informazioni Progetto</h2>
             <div className="space-y-2">
@@ -38,13 +38,10 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="bg-muted rounded-lg aspect-video flex items-center justify-center">
-            <p className="text-muted-foreground">Immagine o video del progetto</p>
-          </div>
         </div>
 
         <h2 className="text-2xl font-bold mb-6 text-center">Risorse Disponibili</h2>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "1.5rem" }}>
           <Card>
             <CardHeader>
               <CardTitle>Modelli 3D</CardTitle>
